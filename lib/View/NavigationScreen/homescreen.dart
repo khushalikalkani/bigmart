@@ -248,7 +248,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 style: ButtonStyle(
                                   backgroundColor: MaterialStatePropertyAll(
                                       AppColor.primarycolor),
-                                  shape: MaterialStatePropertyAll(
+                                  shape: const MaterialStatePropertyAll(
                                     RoundedRectangleBorder(
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(16),

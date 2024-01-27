@@ -15,9 +15,15 @@ class AppColor{
   static Color gridveiwcolor = Color(0x1A000000);
   static Color homebtmcontainercolor = Color(0xa3deca6b);
   static Color shopqtycolor = Color(0x82000000);
+  static Color storesubnamecolor = Color(0x80000000);
+  static Color storecardtextcolor = Color(0xB3000000);
 
-
-
+  static Color cartsubnamecolor = Color(0x9cffffff);
+  static Color cartcardtextcolor = Color(0xBA000000);
+static Color blackcolor = Color(0xff000000);
+  static Color cartcontainercolor = Color(0x1A188806);
+  static Color  tabbarContainercolor = Color(0x33188806);
+static Color orderdeliver = Color(0x3325a310);
 
 }
 

@@ -30,4 +30,10 @@ class Appimage {
     'assets/images/image-removebg-preview (86) 1.png',
     'assets/images/image-removebg-preview (89) 1.png'
   ];
+
+  static String edit = 'assets/images/edit (3) 3.png';
+  static String delete = 'assets/images/delete 1.png';
+  static String officebag = 'assets/images/briefcase (2) 1.png';
+  static String location = 'assets/images/location (4) 1.png';
+
 }

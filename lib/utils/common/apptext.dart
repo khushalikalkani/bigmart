@@ -30,6 +30,24 @@ class Apptext {
   static String btmtext3 = 'Get Upto 30% Off';
   static String btmbtntext = 'Order Now';
   static String shoptext = 'Shop';
+  static String storetext = 'Stores';
+  static String storetext2 = 'We have 36 vendors now';
+  static String storecardtitle = 'Shop';
+  static String storecardsubtitle = 'Shop';
+
+  static String storecarddilivery = 'Shop';
+  static String carttext = 'Delivery in 10 minutes';
+  static String cartsubtext = '3 items';
+  static String tabbartext1 = 'Address';
+  static String tabbartext2 = 'My Order';
+  static String tabbartext3 = 'My Wallet';
+  static String tabbartext4 = 'Logout';
+  static String tabaddresstitle = 'My Addresses';
+  static String tabOrdertitle = 'My Orders';
+
+
+
+
 
   static List<String> gridviewname = [
     'Dairy, Br...',

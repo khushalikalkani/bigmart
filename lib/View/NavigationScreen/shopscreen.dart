@@ -28,7 +28,7 @@ class Name {
       required this.price});
 }
 
-List<Name> data = [
+List<Name> shopdata = [
   Name(
     name: "Chocolate",
     subname: 'Bittersweet Chocolate',
@@ -77,7 +77,7 @@ class _ShopScreenState extends State<ShopScreen> {
                 crossAxisCount: 2,
                 mainAxisExtent: 288,
               ),
-              itemCount: data.length,
+              itemCount: shopdata.length,
               itemBuilder: (context, index) {
                 return Container(
                   decoration: BoxDecoration(
@@ -92,7 +92,7 @@ class _ShopScreenState extends State<ShopScreen> {
                         Container(
                           height: 150,
                           child: Image.asset(
-                            data[index].image,
+                            shopdata[index].image,
                             scale: 2.5,
                           ),
                         ),
@@ -102,16 +102,16 @@ class _ShopScreenState extends State<ShopScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Globaltext(
-                                text: data[index].name,
+                                text: shopdata[index].name,
                                 fontfamily: GoogleFonts.inter().toString(),
                                 fontweight: FontWeight.w400,
                               ),
                               Globaltext(
-                                text: data[index].subname,
+                                text: shopdata[index].subname,
                                 fontfamily: GoogleFonts.inter().toString(),
                               ),
                               Globaltext(
-                                text: data[index].qty,
+                                text: shopdata[index].qty,
                                 fontfamily: GoogleFonts.inter().toString(),
                                 color: AppColor.shopqtycolor,
                               ),
@@ -124,7 +124,7 @@ class _ShopScreenState extends State<ShopScreen> {
                         Row(
                           children: [
                             Globaltext(
-                              text: "₹ ${data[index].price.toString()}",
+                              text: "₹ ${shopdata[index].price.toString()}",
                               fontfamily: GoogleFonts.inter().toString(),
                               fontweight: FontWeight.w500,
                               fontsize: 14,

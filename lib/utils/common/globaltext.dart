@@ -24,7 +24,7 @@ class Globaltext extends StatelessWidget {
       text,
       textAlign: TextAlign.center,
       style: textStyle ?? TextStyle(
-
+        overflow: TextOverflow.ellipsis,
         color: color ?? Colors.black,
         fontSize: fontsize ?? 14,
         fontWeight: fontweight ?? FontWeight.w500,
