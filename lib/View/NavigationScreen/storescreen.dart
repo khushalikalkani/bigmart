@@ -36,8 +36,7 @@ List<storeName> storedata = [
     subname: 'Organic',
     delivery: "Delivery",
     image: 'assets/images/image-removebg-preview (92) 1.png',
-    available: 'Pickup available', away: "7.5 mi away"
-    ,
+    available: 'Pickup available', away: "7.5 mi away",
   ),
   storeName(
     name: "DealShare Mart",

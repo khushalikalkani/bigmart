@@ -44,6 +44,8 @@ class Apptext {
   static String tabbartext4 = 'Logout';
   static String tabaddresstitle = 'My Addresses';
   static String tabOrdertitle = 'My Orders';
+  static String mywallettitle = 'My Balance';
+
 
 
 
