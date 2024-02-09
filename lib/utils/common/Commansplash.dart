@@ -6,13 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CommanSplashScreen extends StatelessWidget {
-  final String headtext, subtext, imageview;
+  final  headtext, subtext, imageview;
 
-  const CommanSplashScreen(
+   CommanSplashScreen(
       {super.key,
-      required this.headtext,
-      required this.subtext,
-      required this.imageview});
+       this.headtext,
+       this.subtext,
+      this.imageview});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class CommanSplashScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 120),
             child: Globaltext(
-              text: headtext,
+              text: headtext.toString(),
               color: AppColor.headcolor,
               fontsize: 20,
               fontfamily: GoogleFonts.inter().toString(),
@@ -36,7 +36,7 @@ class CommanSplashScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 90.0),
             child: Globaltext(
-              text: subtext,
+              text: subtext.toString(),
               fontweight: FontWeight.w400,
               fontfamily: 'inter',
             ),

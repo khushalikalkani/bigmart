@@ -46,7 +46,7 @@ class CustomContainer extends StatelessWidget {
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Icon(
+                            Icon(
                               Icons.arrow_back,
                               color: Colors.white,
                             ),

@@ -1,3 +1,6 @@
+
+import 'dart:developer';
+
 import 'package:bigmart/View/Auth/createaccountscreen.dart';
 import 'package:bigmart/utils/common/appcolor.dart';
 import 'package:bigmart/utils/common/appimage.dart';
@@ -5,9 +8,13 @@ import 'package:bigmart/utils/common/apptext.dart';
 import 'package:bigmart/utils/common/globalbutton.dart';
 import 'package:bigmart/utils/common/globaltext.dart';
 import 'package:bigmart/utils/common/textfield.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../bottomnavigationbar.dart';
 
 class SigninScreen extends StatefulWidget {
   const SigninScreen({super.key});
@@ -17,6 +24,33 @@ class SigninScreen extends StatefulWidget {
 }
 
 class _SigninScreenState extends State<SigninScreen> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  void login() async {
+    String email = emailController.text.trim();
+    String password = passwordController.text.trim();
+
+    if (email == "" || password == "") {
+     log('fill all feilds');
+    } else {
+      try {
+        UserCredential userCredential = await FirebaseAuth.instance
+            .signInWithEmailAndPassword(email: email, password: password);
+        if(userCredential.user!=null){
+          log('log in success');
+          // Navigator.push(context, MaterialPageRoute(builder: (_){
+          //   return BotttomNavigationbarScreen();
+          // }));
+        }
+      } on FirebaseAuthException catch (ex) {
+        log(ex.code.toString());
+        log('error');
+
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
@@ -43,13 +77,19 @@ class _SigninScreenState extends State<SigninScreen> {
             SizedBox(
               height: height * 0.035,
             ),
-            const TextFieldWidget(text: 'Email'),
+            TextFieldWidget(
+              text: 'Email',
+              controller: emailController,
+              message: '',
+            ),
             SizedBox(
               height: height * 0.029,
             ),
-            const TextFieldWidget(
+            TextFieldWidget(
               text: 'Password',
               icon: Icon(Icons.visibility_off_outlined),
+              controller: passwordController,
+              message: '',
             ),
             SizedBox(
               height: height * 0.011,
@@ -76,7 +116,38 @@ class _SigninScreenState extends State<SigninScreen> {
             GlobalButton(
               height: height * 0.054,
               width: double.infinity,
-              voidcallback: () {},
+              voidcallback: () async {
+                if (emailController.text.isNotEmpty &&
+                    passwordController.text.isNotEmpty) {
+                  SharedPreferences sharedpreferance =
+                      await SharedPreferences.getInstance();
+                  sharedpreferance.setString('username', emailController.text);
+                  login();
+                  // Navigator.pushAndRemoveUntil(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: (_) => BotttomNavigationbarScreen()),
+                  //     (route) => false);
+                } else {
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: Text('Invalid again'),
+                          content:
+                              Text('Please enter valid username and password'),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: Text('ok'),
+                            ),
+                          ],
+                        );
+                      });
+                }
+              },
               text: 'Sign in',
               fontweight: FontWeight.w500,
               fontsize: 18,

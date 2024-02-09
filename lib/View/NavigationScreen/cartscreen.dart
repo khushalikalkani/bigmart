@@ -1,3 +1,5 @@
+import 'package:bigmart/View/TabBarScreen/logout.dart';
+import 'package:bigmart/View/Tabbarscreen2.dart';
 import 'package:bigmart/utils/common/appcolor.dart';
 import 'package:bigmart/utils/common/apptext.dart';
 import 'package:bigmart/utils/common/cutomcontainer.dart';
@@ -145,7 +147,6 @@ class _CartScreenState extends State<CartScreen> {
                         Row(
                           children: [
                             Container(
-
                               height: 24.h,
                               width: 24.w,
                               decoration: BoxDecoration(
@@ -203,13 +204,23 @@ class _CartScreenState extends State<CartScreen> {
                     ),
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return TabBarScreen2();
+                      },
+                    ),
+                  );
+                },
                 child: const Text(
                   "3 items  ₹ 750      Proceed To Pay >>",
                   style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 14),
+                    color: Colors.white,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 14,
+                  ),
                 ),
               ),
             ),

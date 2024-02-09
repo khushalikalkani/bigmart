@@ -1,3 +1,4 @@
+import 'package:bigmart/View/deliverpage.dart';
 import 'package:bigmart/utils/common/appcolor.dart';
 import 'package:bigmart/utils/common/appimage.dart';
 import 'package:bigmart/utils/common/apptext.dart';
@@ -81,17 +82,22 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
 
-                      Container(
-                        height: height * 0.10,
-                        width: width * 0.100,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: AppColor.homecontainercolor,
-                        ),
-                        child: const Icon(
-                          Icons.menu,
-                          // size: 30.0,
-                          color: Colors.white,
+                      InkWell(
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (_) => DeliverScreen()));
+                        },
+                        child: Container(
+                          height: height * 0.10,
+                          width: width * 0.100,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: AppColor.homecontainercolor,
+                          ),
+                          child: const Icon(
+                            Icons.menu,
+                            // size: 30.0,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ],

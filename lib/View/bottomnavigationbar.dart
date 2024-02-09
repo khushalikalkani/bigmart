@@ -16,6 +16,7 @@ class BotttomNavigationbarScreen extends StatefulWidget {
 
 class _BotttomNavigationbarScreenState
     extends State<BotttomNavigationbarScreen> {
+
   int _selectedIndex = 0;
   static List WidgetOption = [
     HomeScreen(),

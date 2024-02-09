@@ -8,15 +8,20 @@ import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/otp_field_style.dart';
 import 'package:otp_text_field/style.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class VarificationScreen extends StatefulWidget {
-  const VarificationScreen({super.key});
+  final String email;
+  final String password;
+
+  const VarificationScreen({super.key, required this.email, required this.password});
 
   @override
   State<VarificationScreen> createState() => _VarificationScreenState();
 }
 
 class _VarificationScreenState extends State<VarificationScreen> {
+
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
@@ -47,7 +52,7 @@ class _VarificationScreenState extends State<VarificationScreen> {
                   ),
                   children: [
                     TextSpan(
-                      text: Apptext.verifysubtitle2,
+                      text: widget.email,
                       style: TextStyle(
                           color: AppColor.primarycolor,
                           decoration: TextDecoration.underline),
@@ -101,12 +106,40 @@ class _VarificationScreenState extends State<VarificationScreen> {
             GlobalButton(
               height: height * 0.050,
               width: double.infinity,
-              voidcallback: () {
-                Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(
-                        builder: (_) => BotttomNavigationbarScreen()),
-                    (route) => false);
+              voidcallback: () async {
+                // if (widget.email.isNotEmpty ||
+                //     widget.password.isNotEmpty) {
+                //   // if (_rememberMe) {}
+                //
+                //   SharedPreferences prefs = await SharedPreferences
+                //       .getInstance();
+                //   prefs.setString('username', widget.email);
+                //   Navigator.pushReplacement(
+                //     context,
+                //     MaterialPageRoute(
+                //       builder: (context) => BotttomNavigationbarScreen(),
+                //     ),
+                //   );
+                // } else {
+                //   showDialog(
+                //     context: context,
+                //     builder: (BuildContext context) {
+                //       return AlertDialog(
+                //         title: Text('Invalid Login'),
+                //         content: Text(
+                //             'Please enter valid username and password'),
+                //         actions: [
+                //           TextButton(
+                //             onPressed: () {
+                //               Navigator.of(context).pop();
+                //             },
+                //             child: Text('OK'),
+                //           ),
+                //         ],
+                //       );
+                //     },
+                //   );
+
               },
               text: 'Verify',
               fontweight: FontWeight.w500,

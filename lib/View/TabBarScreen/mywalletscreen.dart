@@ -12,54 +12,59 @@ class MyWalletScreen extends StatefulWidget {
   State<MyWalletScreen> createState() => _MyWalletScreenState();
 }
 
-class Order {
+class Balance {
   String image;
-  String deliverd;
-  String number;
+  String transactiontitle;
+  String transactionid;
   String datentime;
   String price;
   Color color;
   Color? containercolor;
+  Color? iconcolor;
 
-  Order(
-      {required this.image,
-        required this.deliverd,
-        required this.number,
-        required this.datentime,
-        required this.price,
-        required this.color,
-        this.containercolor});
+  Balance({
+    required this.image,
+    required this.transactiontitle,
+    required this.transactionid,
+    required this.datentime,
+    required this.price,
+    required this.color,
+    required this.containercolor,
+    this.iconcolor,
+  });
 }
 
-List<Order> Orderdata = [
-  Order(
+List<Balance> BalanceData = [
+  Balance(
       image: 'assets/images/add 2.png',
-      deliverd: 'delivered',
-      number: "0RD0432547891",
-      datentime: 'Placed on wed, 19 Oct 30, 12:55 pm',
-      price: '930',
+      transactiontitle: 'Cashback',
+      transactionid: "Transaction ID: 50916228",
+      datentime: 'On 23 Oct 18, 03:13 PM',
+      price: '500',
       color: AppColor.headcolor,
-      containercolor: AppColor.tabbarContainercolor
-
-  ),
-  Order(
+      containercolor: AppColor.tabbarContainercolor,
+      iconcolor: AppColor.headcolor),
+  Balance(
       image: 'assets/images/minus 1.png',
-      deliverd: 'delivered',
-      number: "0RD0432525486",
-      datentime: 'Placed on wed, 22 Oct 27, 01:55 pm',
-      price: '580',
-      color: AppColor.headcolor,
-      containercolor: AppColor.tabbarContainercolor),
-  Order(
+      transactiontitle: 'Purchase',
+      transactionid: "Transaction ID: 50916984",
+      datentime: 'On 23 Oct 18, 03:13 PM',
+      price: '300',
+      color: Color(0xff5041FC),
+      containercolor: AppColor.tabbarContainercolor,
+      iconcolor: Colors.red),
+  Balance(
     image: 'assets/images/add 2.png',
-    deliverd: 'cancelled',
-    number: "0RD0432556247",
-    datentime: 'Placed on wed, 22 Oct 27, 01:55 pm',
-    price: '1080',
-    color: Color(0xff5041FC),
+    transactiontitle: 'Cashback',
+    transactionid: "Transaction ID: 509165488",
+    datentime: 'On 13 Oct 16, 01:43 PM',
+    price: '800',
+    color: AppColor.headcolor,
     containercolor: Color(0x42a010a3),
+    iconcolor: AppColor.headcolor,
   )
 ];
+
 class _MyWalletScreenState extends State<MyWalletScreen> {
   @override
   Widget build(BuildContext context) {
@@ -67,146 +72,108 @@ class _MyWalletScreenState extends State<MyWalletScreen> {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 17.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              children: [
-                Globaltext(
-                  text: Apptext.mywallettitle,
-                  fontsize: 24,
-                  fontfamily: GoogleFonts.inter().toString(),
-                  fontweight: FontWeight.w500,
-                ),
-              ],
+            Globaltext(
+              text: Apptext.mywallettitle,
+              fontsize: 24,
+              fontfamily: GoogleFonts.inter().toString(),
+              fontweight: FontWeight.w500,
             ),
             ListView.builder(
                 shrinkWrap: true,
-                itemCount: Orderdata.length,
+                itemCount: BalanceData.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return Container(
-                    height: 104.h,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.all(
-                        Radius.circular(10),
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 14.0),
+                    child: Container(
+                      height: 104.h,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                        border: Border.all(color: AppColor.textfieldcolor),
                       ),
-                      border: Border.all(color: AppColor.textfieldcolor),
-                    ),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Row(
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Row(
+                              children: [
+                                SizedBox(
+                                  width: 18.w,
+                                ),
+                                Image.asset(
+                                  BalanceData[index].image,
+                                  scale: 3,
+                                  color: BalanceData[index].iconcolor,
+                                ),
+                                SizedBox(
+                                  width: 16.w,
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Globaltext(
+                                      text: BalanceData[index].transactiontitle,
+                                      fontweight: FontWeight.w600,
+                                      fontfamily: GoogleFonts.inter().toString(),
+                                      fontsize: 16,
+                                      color: BalanceData[index].color,
+                                    ),
+                                    SizedBox(
+                                      height: 10.h,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Globaltext(
+                                          text: BalanceData[index].transactionid,
+                                          fontsize: 14,
+                                          fontfamily:
+                                              GoogleFonts.inter().toString(),
+                                          fontweight: FontWeight.w400,
+                                          color: AppColor.blackcolor,
+                                        ),
+                                        SizedBox(
+                                          width: 3.h,
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 10.h,
+                                    ),
+                                    Globaltext(
+                                      text: BalanceData[index].datentime,
+                                      fontsize: 12,
+                                      fontfamily: GoogleFonts.inter().toString(),
+                                      fontweight: FontWeight.w400,
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              SizedBox(
-                                width: 20.w,
-                              ),
-                              Image.asset(
-                                Orderdata[index].image,
-                                scale: 3,
-                                color: AppColor.headcolor,
-                              ),
-                              SizedBox(
-                                width: 16.w,
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    height: 17.h,
-                                    width: 62.w,
-                                    decoration: BoxDecoration(
-                                      color: Orderdata[index].containercolor,
-                                      borderRadius: const BorderRadius.all(
-                                        Radius.circular(20),
-                                      ),
-                                    ),
-                                    child: Center(
-                                      child: Globaltext(
-                                        text: Orderdata[index].deliverd,
-                                        fontweight: FontWeight.w600,
-                                        fontfamily:
-                                        GoogleFonts.inter().toString(),
-                                        fontsize: 10,
-                                        color: Orderdata[index].color,
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 10.h,
-                                  ),
-                                  Row(
-                                    children: [
-                                      Globaltext(
-                                        text: Orderdata[index].number,
-                                        fontsize: 14,
-                                        fontfamily:
-                                        GoogleFonts.inter().toString(),
-                                        fontweight: FontWeight.w600,
-                                        color: AppColor.blackcolor,
-                                      ),
-                                      SizedBox(
-                                        width: 3.h,
-                                      ),
-                                      Container(
-                                        height: 4.h,
-                                        width: 4.w,
-                                        decoration: const BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color: Color(0x9E000000)),
-                                      ),
-                                      SizedBox(
-                                        width: 4.h,
-                                      ),
-                                      Globaltext(
-                                        text: "₹ ${Orderdata[index].price}",
-                                        fontfamily:
-                                        GoogleFonts.inter().toString(),
-                                        fontweight: FontWeight.w500,
-                                        fontsize: 14,
-                                        color: const Color(0xba0500ff),
-                                      )
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: 10.h,
-                                  ),
-                                  Globaltext(
-                                    text: Orderdata[index].datentime,
-                                    fontsize: 10,
-                                    fontfamily: GoogleFonts.inter().toString(),
-                                    fontweight: FontWeight.w300,
-                                  ),
-                                ],
+                              Globaltext(
+                                text: "₹ ${BalanceData[index].price}",
+                                fontfamily: GoogleFonts.inter().toString(),
+                                fontweight: FontWeight.w500,
+                                fontsize: 14,
+                                color: BalanceData[index].iconcolor,
                               ),
                             ],
                           ),
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.visibility_outlined,
-                              size: 20,
-                              color: AppColor.headcolor,
-                            ),
-                            SizedBox(
-                              height: 6.h,
-                            ),
-                            Globaltext(
-                              text: 'View Details',
-                              color: AppColor.headcolor,
-                              fontsize: 8,
-                              fontfamily: GoogleFonts.inter().toString(),
-                              fontweight: FontWeight.w500,
-                            )
-                          ],
-                        ),
-                        SizedBox(
-                          width: 10.w,
-                        ),
-                      ],
+                          SizedBox(
+                            width: 27.w,
+                          ),
+                        ],
+                      ),
                     ),
                   );
+
                 }),
           ],
         ),

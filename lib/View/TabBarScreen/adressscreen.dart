@@ -199,6 +199,7 @@ class AddressContainer extends StatelessWidget {
                 fontfamily: GoogleFonts.inter().toString(),
                 fontweight: FontWeight.w500,
               ),
+
             ],
           ),
           SizedBox(

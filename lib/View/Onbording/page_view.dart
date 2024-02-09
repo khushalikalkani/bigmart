@@ -4,8 +4,9 @@
 // import 'package:flutter/material.dart';
 // import 'package:google_fonts/google_fonts.dart';
 //
+import 'package:bigmart/View/Auth/createaccountscreen.dart';
 import 'package:bigmart/View/Auth/signinscreen.dart';
-import 'package:bigmart/View/Onbording/Commansplash.dart';
+import 'package:bigmart/utils/common/Commansplash.dart';
 import 'package:bigmart/utils/common/appcolor.dart';
 import 'package:bigmart/utils/common/appimage.dart';
 import 'package:bigmart/utils/common/apptext.dart';

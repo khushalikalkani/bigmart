@@ -45,6 +45,10 @@ class Apptext {
   static String tabaddresstitle = 'My Addresses';
   static String tabOrdertitle = 'My Orders';
   static String mywallettitle = 'My Balance';
+  static String walletstitle = 'Wallets';
+static String cardstitle = 'Add Credit, Debit & Atm Cards';
+  static String netbankingtitle = 'Net Banking';
+  static String payviaupistitle = 'Pay via UPI';
 
 
 

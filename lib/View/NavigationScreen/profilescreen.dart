@@ -1,7 +1,10 @@
+import 'package:bigmart/View/Auth/signinscreen.dart';
+import 'package:bigmart/View/NavigationScreen/homescreen.dart';
 import 'package:bigmart/View/TabBarScreen/adressscreen.dart';
 import 'package:bigmart/View/TabBarScreen/logout.dart';
 import 'package:bigmart/View/TabBarScreen/myorderscreen.dart';
 import 'package:bigmart/View/TabBarScreen/mywalletscreen.dart';
+import 'package:bigmart/View/bottomnavigationbar.dart';
 import 'package:bigmart/utils/common/appcolor.dart';
 import 'package:bigmart/utils/common/apptext.dart';
 import 'package:bigmart/utils/common/cutomcontainer.dart';
@@ -27,12 +30,12 @@ class _ProfileScreenState extends State<ProfileScreen>
     _tabController = TabController(length: 4, vsync: this);
   }
 
-  static List WidgetOption = [
-    AddressScreen(),
-    MyOrderScreen(),
-    MyWalletScreen(),
-    LogOutScreen(),
-  ];
+  // static List WidgetOption = [
+  //   AddressScreen(),
+  //   MyOrderScreen(),
+  //   MyWalletScreen(),
+  //   LogOutScreen(),
+  // ];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -58,7 +61,6 @@ class _ProfileScreenState extends State<ProfileScreen>
                       padding: const EdgeInsets.all(16.0),
                       child: TabBar(
                         padding: EdgeInsets.zero,
-
                         indicatorColor: Colors.transparent,
                         controller: _tabController,
                         labelColor: AppColor.primarycolor,
@@ -161,36 +163,59 @@ class _ProfileScreenState extends State<ProfileScreen>
                               )
                             ],
                           ),
-                          Column(
-                            children: [
-                              Container(
-                                height: 38.h,
-                                width: 38.w,
-                                decoration: BoxDecoration(
-                                  color: selectedindex == 3
-                                      ? AppColor.headcolor
-                                      : AppColor.tabbarContainercolor,
-                                  shape: BoxShape.circle,
-                                ),
-                                child: Image.asset(
-                                  'assets/images/logout (4) 1.png',
-                                  scale: 3,
-                                  color: selectedindex == 3
-                                      ? Colors.white
-                                      : AppColor.primarycolor,
-                                ),
-                              ),
-                              SizedBox(
-                                height: 6.h,
-                              ),
-                              Text(
-                                'Logout',
-                                style: TextStyle(
+                          InkWell(
+                            onTap: () {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: Text('Log out?'),
+                                    content: Text('Are You Sure to Logout?'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_){
+                                            return SigninScreen();
+                                          }), (route) => false);
+                                        },
+                                        child: Text('ok'),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+                            },
+                            child: Column(
+                              children: [
+                                Container(
+                                  height: 38.h,
+                                  width: 38.w,
+                                  decoration: BoxDecoration(
                                     color: selectedindex == 3
-                                        ? AppColor.primarycolor
-                                        : Colors.black),
-                              )
-                            ],
+                                        ? AppColor.headcolor
+                                        : AppColor.tabbarContainercolor,
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: Image.asset(
+                                    'assets/images/logout (4) 1.png',
+                                    scale: 3,
+                                    color: selectedindex == 3
+                                        ? Colors.white
+                                        : AppColor.primarycolor,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 6.h,
+                                ),
+                                Text(
+                                  'Logout',
+                                  style: TextStyle(
+                                      color: selectedindex == 3
+                                          ? AppColor.primarycolor
+                                          : Colors.black),
+                                )
+                              ],
+                            ),
                           ),
                         ],
                         onTap: _onItemTapped,
@@ -204,12 +229,11 @@ class _ProfileScreenState extends State<ProfileScreen>
           ),
         ),
         Expanded(
-          child: TabBarView(
-              controller: _tabController, children: [
+          child: TabBarView(controller: _tabController, children: [
             AddressScreen(),
             MyOrderScreen(),
             MyWalletScreen(),
-            LogOutScreen(),
+            LogoutScreen()
           ]),
         )
       ],
