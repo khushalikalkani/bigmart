@@ -27,38 +27,37 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
   TextEditingController passwordEditingController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
-  void createaccount()async{
-    String name = emailEditingController.text.trim();
-
+  void createaccount() async {
+    String name = nameEditingController.text.trim();
     String email = emailEditingController.text.trim();
-    String password = emailEditingController.text.trim();
+    String password = passwordEditingController.text.trim();
 
-    if ( name == "" || email == ""||password == ""){
+    if (name == "" || email == "" || password == "") {
       log('please fill details');
-    }
-    else{
-     try{
-       UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);
-       log('user created');
-       if(userCredential.user != null){
-         // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_){
-         //   return SigninScreen();
-        // }), (route) => false);
-         Navigator.pop(context);
-       }
-     }on FirebaseAuthException catch(ex){
-       log(ex.code.toString());
-     }
+    } else {
+      try {
+        UserCredential userCredential =
+            await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: email,
+          password: password,
+        );
+        log('user created');
+        if (userCredential.user != null) {
+          Navigator.pop(context);
+        }
+      } on FirebaseAuthException catch (ex) {
+        log(ex.code.toString());
+      }
     }
   }
 
-  @override
-  void dispose() {
-    emailEditingController;
-    nameEditingController;
-    passwordEditingController;
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   emailEditingController;
+  //   nameEditingController;
+  //   passwordEditingController;
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -145,39 +144,25 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                   height: height * 0.054,
                   width: double.infinity,
                   voidcallback: () {
-                  //   if (_formKey.currentState!.validate()) {
-                  //     Navigator.push(
-                  //       context,
-                  //       MaterialPageRoute(
-                  //         builder: (context) => VarificationScreen(
-                  //           email: emailEditingController.text,
-                  //           password: passwordEditingController.text,
-                  //         ),
-                  //       ),
-                  //     );
-                  //   }
-                  //   log(emailEditingController.text);
+                    //   if (_formKey.currentState!.validate()) {
+                    //     Navigator.push(
+                    //       context,
+                    //       MaterialPageRoute(
+                    //         builder: (context) => VarificationScreen(
+                    //           email: emailEditingController.text,
+                    //           password: passwordEditingController.text,
+                    //         ),
+                    //       ),
+                    //     );
+                    //   }
+                    //   log(emailEditingController.text);
 
-                  createaccount();
+                    createaccount();
                   },
                   text: 'Sign Up',
                   fontweight: FontWeight.w500,
                   fontsize: 18,
                 ),
-                // ElevatedButton(onPressed: () {
-                //   if (_formKey.currentState!.validate()) {
-                //     Navigator.push(
-                //       context,
-                //       MaterialPageRoute(
-                //         builder: (context) => VarificationScreen(
-                //           email: emailEditingController.text,
-                //           password: passwordEditingController.text,
-                //         ),
-                //       ),
-                //     );
-                //   }
-                //   log(emailEditingController.text);
-                // }, child: Text('test')),
                 SizedBox(
                   height: height * 0.031,
                 ),

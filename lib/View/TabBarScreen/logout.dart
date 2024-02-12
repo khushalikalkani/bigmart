@@ -9,21 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-// class Paymentscreen extends StatefulWidget {
-//   const Paymentscreen({super.key});
-//
-//   @override
-//   State<Paymentscreen> createState() => _PaymentscreenState();
-// }
-//
-// class _PaymentscreenState extends State<Paymentscreen>
-// {
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Center(child: Text('khushi'),);
-//   }
-// }
+
 class LogoutScreen extends StatefulWidget {
   const LogoutScreen({super.key});
 

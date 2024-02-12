@@ -8,6 +8,8 @@ import 'package:bigmart/View/bottomnavigationbar.dart';
 import 'package:bigmart/utils/common/appcolor.dart';
 import 'package:bigmart/utils/common/apptext.dart';
 import 'package:bigmart/utils/common/cutomcontainer.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -30,17 +32,24 @@ class _ProfileScreenState extends State<ProfileScreen>
     _tabController = TabController(length: 4, vsync: this);
   }
 
-  // static List WidgetOption = [
-  //   AddressScreen(),
-  //   MyOrderScreen(),
-  //   MyWalletScreen(),
-  //   LogOutScreen(),
-  // ];
+  static List WidgetOption = [
+    AddressScreen(),
+    MyOrderScreen(),
+    MyWalletScreen(),
+    LogoutScreen()
+  ];
 
   void _onItemTapped(int index) {
     setState(() {
       selectedindex = index;
     });
+  }
+
+  void logOut() async {
+    await FirebaseAuth.instance.signOut();
+    Navigator.popUntil(context, (route) => route.isFirst);
+    Navigator.pushReplacement(context,
+        CupertinoPageRoute(builder: (context) => const SigninScreen()));
   }
 
   @override
@@ -173,11 +182,10 @@ class _ProfileScreenState extends State<ProfileScreen>
                                     content: Text('Are You Sure to Logout?'),
                                     actions: [
                                       TextButton(
-                                        onPressed: () {
-                                          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_){
-                                            return SigninScreen();
-                                          }), (route) => false);
-                                        },
+                                        onPressed: ()
+                                  {
+                                    logOut();
+                                  },
                                         child: Text('ok'),
                                       ),
                                     ],
@@ -229,12 +237,13 @@ class _ProfileScreenState extends State<ProfileScreen>
           ),
         ),
         Expanded(
-          child: TabBarView(controller: _tabController, children: [
-            AddressScreen(),
-            MyOrderScreen(),
-            MyWalletScreen(),
-            LogoutScreen()
-          ]),
+          child: TabBarView(controller: _tabController,
+             children: [AddressScreen(),
+               MyOrderScreen(),
+               MyWalletScreen(),
+               LogoutScreen()],
+
+          ),
         )
       ],
     );

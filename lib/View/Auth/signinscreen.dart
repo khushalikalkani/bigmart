@@ -9,11 +9,13 @@ import 'package:bigmart/utils/common/globalbutton.dart';
 import 'package:bigmart/utils/common/globaltext.dart';
 import 'package:bigmart/utils/common/textfield.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../NavigationScreen/homescreen.dart';
 import '../bottomnavigationbar.dart';
 
 class SigninScreen extends StatefulWidget {
@@ -38,15 +40,12 @@ class _SigninScreenState extends State<SigninScreen> {
         UserCredential userCredential = await FirebaseAuth.instance
             .signInWithEmailAndPassword(email: email, password: password);
         if(userCredential.user!=null){
-          log('log in success');
-          // Navigator.push(context, MaterialPageRoute(builder: (_){
-          //   return BotttomNavigationbarScreen();
-          // }));
+          Navigator.popUntil(context, (route) => route.isFirst);
+          Navigator.pushReplacement(
+              context, CupertinoPageRoute(builder: (context) => BotttomNavigationbarScreen()));
         }
       } on FirebaseAuthException catch (ex) {
         log(ex.code.toString());
-        log('error');
-
       }
     }
   }
@@ -123,11 +122,6 @@ class _SigninScreenState extends State<SigninScreen> {
                       await SharedPreferences.getInstance();
                   sharedpreferance.setString('username', emailController.text);
                   login();
-                  // Navigator.pushAndRemoveUntil(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //         builder: (_) => BotttomNavigationbarScreen()),
-                  //     (route) => false);
                 } else {
                   showDialog(
                       context: context,
